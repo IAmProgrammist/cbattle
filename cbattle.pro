@@ -9,16 +9,34 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src/main.cpp \
+    src/game/client/connection.cpp \
+    src/game/client/client.cpp \
+    src/game/client/connectionstrategy.cpp \
+    src/game/client/localconnectionstrategy.cpp \
+    src/game/gamebuilder.cpp \
+    src/game/server/connection.cpp \
+    src/game/server/localconnection.cpp \
+    src/game/server/server.cpp \
     src/models/field.cpp \
     src/models/game.cpp \
     src/models/ship.cpp \
     src/utils/moveableobjectship.cpp \
     src/widgets/fieldwidget.cpp \
     src/widgets/fieldwidgetedit.cpp \
-    src/widgets/initgame.cpp
+    src/widgets/gamewindow.cpp \
+    src/widgets/initgame.cpp \
+    src/main.cpp \
 
 HEADERS += \
+    include/game/client/botclient.h \
+    include/game/client/client.h \
+    include/game/client/connection.h \
+    include/game/client/connectionstrategy.h \
+    include/game/client/localconnectionstrategy.h \
+    include/game/server/connection.h \
+    include/game/server/localconnection.h \
+    include/game/server/server.h \
+    include/game/gamebuilder.h \
     include/models/field.h \
     include/models/game.h \
     include/models/ship.h \
@@ -26,8 +44,9 @@ HEADERS += \
     include/utils/moveableobjectship.h \
     include/widgets/fieldwidget.h \
     include/widgets/fieldwidgetedit.h \
+    include/widgets/gamewindow.h \
     include/widgets/initgame.h \
-    mytcpserver.h
+    mytcpserver.h \
 
 FORMS += \
     src/ui/game.ui \

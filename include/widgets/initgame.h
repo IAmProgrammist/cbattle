@@ -23,6 +23,7 @@ private:
     Ui::InitGame *ui;
 protected:
     void showEvent(QShowEvent* event);
+    void beginBot();
 };
 
 #endif // INITGAME_H
