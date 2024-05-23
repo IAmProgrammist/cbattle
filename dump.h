@@ -5,93 +5,102 @@
 #include <random>
 #include <QDebug>
 
-#define GAME_SIZE 10
-#define ONE_SHIP 4
-#define THREE_SHIP 3
-#define TWO_SHIP 2
-#define FOUR_SHIP 1
 
-class Ship {
-public:
-    bool is_horizontal = true;
-    int length = 1;
-    int x = 0;
-    int y = 0;
+#include <models/ship.h>
+#include <models/field.h>
 
-    Ship(bool is_horizontal,
-         int length,
-         int x,
-         int y) {
-        this->is_horizontal = is_horizontal;
-        this->length = length;
-        this->x = x;
-        this->y = y;
-    };
-};
 
-enum FieldElement {
-    NOT_CHECKED,
-    EMPTY_CHECKED,
-    EXPOLSION_CHECKED
-};
 
-class Field {
-public:
-    FieldElement field[GAME_SIZE][GAME_SIZE];
-    std::vector<Ship> ships;
-
-    static bool are_in_bounds(int pos) {
-        return pos >= 0 && pos < GAME_SIZE;
-    }
-
-public:
-    static Field generate_random();
-    bool validate_ships();
-};
-
-class Game {
-    Field own_field;
-    Field enemy_field;
-};
-
-class GameServerAdapter {
-public:
-    virtual void on_update() = 0;
-    virtual void on_step(int x, int y) = 0;
-    virtual void on_handshake(Field field, std::vector<Ship> ships) = 0;
-};
+/*
+class ServerConnection;
 
 class GameServer {
+    friend class GameServerBuilder;
+    GameServer() = default;
     bool going_one = true;
-    bool player_one_handshake = false;
-    bool player_two_handshake = false;
-    GameServerAdapter* player_one;
-    GameServerAdapter* player_two;
+    ServerConnection* player_one;
+    ServerConnection* player_two;
 
     Field player_one_field;
     Field player_two_field;
 };
 
-class GameClient {
+class ServerConnection {
+protected:
+    GameServer* game;
+    ServerConnection() {};
 public:
-    virtual void on_update(Game g) = 0;
+    // This one is supposed to be called from server
+    virtual void send_update() = 0;
+
+    // This one is supposed to be called from client
     virtual void on_step(int x, int y) = 0;
+    // As well as this
+    virtual void on_handshake(Field field, std::vector<Ship> ships) = 0;
 };
 
-class LocalGameClient : GameClient {
-    GameServerAdapter* conn;
+class GameServerBuilder;
+class GameClient;
 
-    void on_update(Game g) {
+class ClientConnectionStrategy {
+public:
+    GameClient* client;
+    // This one is called from client, then it is transmitted to server
+    virtual void send_handshake(Field field, std::vector<Ship> ships) = 0;
+    // This one is called from client, then it is transmitted to server
+    virtual void send_step(int x, int y) = 0;
+    // This one is called from server, then it is transmitted to client
+    virtual void on_update(Game g) = 0;
+};
 
+class LocalClientConnectionStrategy : public ClientConnectionStrategy {
+public:
+    ServerConnection* conn;
+    void send_handshake(Field field, std::vector<Ship> ships) {
+        conn->on_handshake(field, ships);
     }
-
-    void on_step(int x, int y) {
+    // This one is called from client, then it is transmitted to server
+    void send_step(int x, int y) {
         conn->on_step(x, y);
     }
+    // This one is called from server, then it is transmitted to client
+    void on_update(Game g) {
+        this->client->on_update(g);
+    }
 };
 
-class BotGameClient : LocalGameClient {
-    // Implement bot logic here later
+class ClientConnection {
+public:
+    ClientConnectionStrategy* strategy;
+    // This one is called from client, then it is transmitted to server
+    void send_handshake(Field field, std::vector<Ship> ships) {
+        return strategy->send_handshake(field, ships);
+    }
+    // This one is called from client, then it is transmitted to server
+    virtual void send_step(int x, int y) {
+        return strategy->send_step(x, y);
+    }
+    // This one is called from server, then it is transmitted to client
+    virtual void on_update(Game g) {
+        return strategy->on_update(g);
+    }
 };
+
+class GameClient {
+protected:
+    ClientConnection *strategy;
+public:
+
+    // This method should be overriden on use
+    virtual void on_update(Game g) = 0;
+
+    void on_step(int x, int y) {
+        return strategy->send_step(x, y);
+    }
+
+    void on_handshake(Field field, std::vector<Ship> ships) {
+        return strategy->send_handshake(field, ships);
+    }
+};*/
 
 #endif // DUMP_H

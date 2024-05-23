@@ -9,25 +9,31 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    dump.cpp \
-    fieldview.cpp \
-    fieldviewedit.cpp \
-    initgame.cpp \
-    main.cpp \
-    movableobjectship.cpp
+    src/main.cpp \
+    src/models/field.cpp \
+    src/models/game.cpp \
+    src/models/ship.cpp \
+    src/utils/moveableobjectship.cpp \
+    src/widgets/fieldwidget.cpp \
+    src/widgets/fieldwidgetedit.cpp \
+    src/widgets/initgame.cpp
 
 HEADERS += \
-    dump.h \
-    fieldview.h \
-    fieldviewedit.h \
-    initgame.h \
-    movableobjectadapter.hpp \
-    movableobjectship.h \
+    include/models/field.h \
+    include/models/game.h \
+    include/models/ship.h \
+    include/utils/moveableobjectadapter.hpp \
+    include/utils/moveableobjectship.h \
+    include/widgets/fieldwidget.h \
+    include/widgets/fieldwidgetedit.h \
+    include/widgets/initgame.h \
     mytcpserver.h
 
 FORMS += \
-    game.ui \
-    initgame.ui
+    src/ui/game.ui \
+    src/ui/initgame.ui \
+
+INCLUDEPATH += include
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

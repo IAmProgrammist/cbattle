@@ -1,24 +1,23 @@
-#include <iostream>
+#include <widgets/fieldwidget.h>
+
 #include <QMouseEvent>
 
-#include "fieldview.h"
+const double FieldWidget::PADDING_PERCENT = 0;
+const QPen FieldWidget::PEN_GRID = QPen(Qt::gray, 3);
+const QPen FieldWidget::PEN_SHIP = QPen(Qt::blue, 3);
+const QBrush FieldWidget::BRUSH_SHIP = QColor(0, 0, 255, 30);
 
-const double FieldView::PADDING_PERCENT = 0.1;
-const QPen FieldView::PEN_GRID = QPen(Qt::gray, 3);
-const QPen FieldView::PEN_SHIP = QPen(Qt::blue, 3);
-const QBrush FieldView::BRUSH_SHIP = QColor(0, 0, 255, 30);
-
-void FieldView::setField(Field field) {
+void FieldWidget::setField(Field field) {
     this->field = field;
 
     redraw();
 }
 
-Field FieldView::getField() {
+Field FieldWidget::getField() {
     return this->field;
 }
 
-void FieldView::redraw() {
+void FieldWidget::redraw() {
     this->clear();
     auto parent = reinterpret_cast<QGraphicsView*>(this->parent());
     double height = parent->height() - PEN_GRID.width();
@@ -40,7 +39,7 @@ void FieldView::redraw() {
     }
 }
 
-int FieldView::getCollidedShipIndex(QPointF pos) {
+int FieldWidget::getCollidedShipIndex(QPointF pos) {
     for (int i = 0; i < this->field.ships.size(); i++) {
         auto ship_data = getShipScenePos(this->field.ships[i]);
 
@@ -52,7 +51,7 @@ int FieldView::getCollidedShipIndex(QPointF pos) {
     return -1;
 }
 
-std::pair<QPointF, QPointF> FieldView::getShipScenePos(Ship& ship) {
+std::pair<QPointF, QPointF> FieldWidget::getShipScenePos(Ship& ship) {
     auto parent = reinterpret_cast<QGraphicsView*>(this->parent());
     double height = parent->height() - PEN_GRID.width();
     double width = parent->width() - PEN_GRID.width();
@@ -67,7 +66,7 @@ std::pair<QPointF, QPointF> FieldView::getShipScenePos(Ship& ship) {
     return {QPointF(beg_x, beg_y), QPointF(end_x, end_y)};
 }
 
-QPoint FieldView::getCellCoordinate(QPointF scene_pos) {
+QPoint FieldWidget::getCellCoordinate(QPointF scene_pos) {
     auto parent = reinterpret_cast<QGraphicsView*>(this->parent());
     double height = parent->height() - PEN_GRID.width();
     double width = parent->width() - PEN_GRID.width();

@@ -1,8 +1,6 @@
-#include "mytcpserver.h"
-#include "initgame.h"
-
 #include <QApplication>
-#include <iostream>
+
+#include <widgets/initgame.h>
 
 int main(int argc, char *argv[])
 {

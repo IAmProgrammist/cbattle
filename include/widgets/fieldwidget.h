@@ -1,5 +1,5 @@
-#ifndef FIELD_VIEW_H
-#define FIELD_VIEW_H
+#ifndef FIELDVIEW_H
+#define FIELDVIEW_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -8,13 +8,10 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsItem>
 
-#include "dump.h"
-#include "movableobjectadapter.hpp"
+#include <models/ship.h>
+#include <models/field.h>
 
-class MovableObjectShip;
-
-class FieldView : public QGraphicsScene
-{
+class FieldWidget : public QGraphicsScene {
     Q_OBJECT
 public:
     static const double PADDING_PERCENT;
@@ -23,7 +20,7 @@ public:
     static const QBrush BRUSH_SHIP;
     Field field;
 
-    FieldView(QGraphicsView *parent = nullptr) : QGraphicsScene(parent) {}
+    FieldWidget(QGraphicsView *parent = nullptr) : QGraphicsScene(parent) {}
 
     void setField(Field field);
     Field getField();
@@ -36,6 +33,4 @@ protected:
     QPoint getCellCoordinate(QPointF scene_pos);
 };
 
-#include "movableobjectship.h"
-
-#endif // FIELD_VIEW_H
+#endif // FIELDVIEW_H

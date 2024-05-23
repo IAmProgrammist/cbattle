@@ -1,13 +1,15 @@
-#include "fieldviewedit.h"
+#include <widgets/fieldwidgetedit.h>
 
-void FieldViewEdit::mouseMoveEvent( QGraphicsSceneMouseEvent *event ) {
+FieldWidgetEdit::FieldWidgetEdit(QGraphicsView *parent) : FieldWidget(parent) {}
+
+void FieldWidgetEdit::mouseMoveEvent( QGraphicsSceneMouseEvent *event ) {
     if (moveable_object != nullptr) {
         QPointF newPos = event->scenePos();
         moveable_object->on_update_scene_pos(newPos);
     }
 }
 
-void FieldViewEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
+void FieldWidgetEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
     QPointF newPos = event->scenePos();
     if (event->button() == Qt::LeftButton) {
         auto index = getCollidedShipIndex(event->scenePos());
@@ -19,8 +21,8 @@ void FieldViewEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
         this->redraw();
 
         if (moveable_object != nullptr) delete moveable_object;
-        this->moveable_object = new MovableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, QPointF(ship_data.first.x() - event->scenePos().x(),
-                                                                                                                       ship_data.first.y() - event->scenePos().y()));
+        this->moveable_object = new MoveableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, QPointF(ship_data.first.x() - event->scenePos().x(),
+                                                                                                                        ship_data.first.y() - event->scenePos().y()));
         this->moveable_object->on_update_scene_pos(newPos);
     } else if (event->button() == Qt::RightButton && this->moveable_object) {
         auto ship = this->moveable_object->getObject();
@@ -28,12 +30,12 @@ void FieldViewEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
         auto offset = this->moveable_object->getOffset();
 
         delete this->moveable_object;
-        this->moveable_object = new MovableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, offset);
+        this->moveable_object = new MoveableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, offset);
         this->moveable_object->on_update_scene_pos(newPos);
     }
 }
 
-void FieldViewEdit::mouseReleaseEvent( QGraphicsSceneMouseEvent *event ){
+void FieldWidgetEdit::mouseReleaseEvent( QGraphicsSceneMouseEvent *event ){
     if (event->button() == Qt::LeftButton && moveable_object) {
         auto parent = reinterpret_cast<QGraphicsView*>(this->parent());
         double height = parent->height() - PEN_GRID.width();
