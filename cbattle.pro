@@ -9,13 +9,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src/game/client/botclient.cpp \
-    src/game/client/connection.cpp \
     src/game/client/client.cpp \
     src/game/client/connectionstrategy.cpp \
     src/game/client/localconnectionstrategy.cpp \
-    src/game/client/botclient.cpp \
-    src/game/server/connection.cpp \
     src/game/server/localconnection.cpp \
     src/game/server/server.cpp \
     src/game/gamebuilder.cpp \

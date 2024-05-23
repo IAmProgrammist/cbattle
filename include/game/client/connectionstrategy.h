@@ -1,5 +1,4 @@
-#ifndef CONNECTIONSTRATEGY_H
-#define CONNECTIONSTRATEGY_H
+#pragma once
 
 #include <models/field.h>
 #include <models/game.h>
@@ -18,7 +17,3 @@ public:
     // This one is called from server, then it is transmitted to client
     virtual void on_update(Game g) = 0;
 };
-
-#include <game/client/client.h>
-
-#endif // CONNECTIONSTRATEGY_H

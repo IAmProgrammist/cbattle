@@ -1,5 +1,4 @@
-#ifndef FIELDVIEW_H
-#define FIELDVIEW_H
+#pragma once
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -33,4 +32,3 @@ protected:
     QPoint getCellCoordinate(QPointF scene_pos);
 };
 
-#endif // FIELDVIEW_H

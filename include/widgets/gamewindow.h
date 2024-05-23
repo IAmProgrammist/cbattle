@@ -1,5 +1,4 @@
-#ifndef GAMEWINDOW_H
-#define GAMEWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 
@@ -22,5 +21,3 @@ private:
 protected:
     void showEvent(QShowEvent* event);
 };
-
-#endif // GAMEWINDOW_H

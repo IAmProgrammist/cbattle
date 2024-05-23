@@ -1,5 +1,4 @@
-#ifndef FIELDWIDGETEDIT_H
-#define FIELDWIDGETEDIT_H
+#pragma once
 
 #include <widgets/fieldwidget.h>
 #include <utils/moveableobjectship.h>
@@ -15,5 +14,3 @@ protected:
     void mousePressEvent( QGraphicsSceneMouseEvent *event );
     void mouseReleaseEvent( QGraphicsSceneMouseEvent *event );
 };
-
-#endif // FIELDWIDGETEDIT_H

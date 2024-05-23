@@ -1,5 +1,4 @@
-#ifndef INITGAME_H
-#define INITGAME_H
+#pragma once
 
 #include <QMainWindow>
 
@@ -26,4 +25,3 @@ protected:
     void beginBot();
 };
 
-#endif // INITGAME_H

@@ -1,5 +1,4 @@
-#ifndef GAMEBUILDER_H
-#define GAMEBUILDER_H
+#pragma once
 
 #include <game/client/client.h>
 #include <game/server/localconnection.h>
@@ -19,5 +18,3 @@ public:
     void vs(std::string ip, int port);
     void begin();
 };
-
-#endif // GAMEBUILDER_H

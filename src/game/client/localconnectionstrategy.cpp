@@ -1,5 +1,6 @@
 #include <game/client/localconnectionstrategy.h>
-
+#include <game/server/connection.h>
+#include <game/client/client.h>
 
 LocalClientConnectionStrategy::LocalClientConnectionStrategy(GameClient* client, ServerConnection* conn) : ClientConnectionStrategy(client), conn(conn) {}
 

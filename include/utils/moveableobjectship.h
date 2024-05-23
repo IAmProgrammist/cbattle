@@ -1,5 +1,4 @@
-#ifndef MOVABLEOBJECTSHIP_H
-#define MOVABLEOBJECTSHIP_H
+#pragma once
 
 #include <QGraphicsScene>
 #include <QGraphicsItem>
@@ -15,4 +14,3 @@ public:
     MoveableObjectShip(QGraphicsView* parent, Ship object, QPointF offset);
 };
 
-#endif // MOVABLEOBJECTSHIP_H

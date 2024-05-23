@@ -1,5 +1,4 @@
-#ifndef CLIENT_H
-#define CLIENT_H
+#pragma once
 
 #include <models/game.h>
 
@@ -13,7 +12,3 @@ public:
     void on_step(int x, int y);
     void on_handshake(Field field, std::vector<Ship> ships);
 };
-
-#include <game/client/connection.h>
-
-#endif // CLIENT_H

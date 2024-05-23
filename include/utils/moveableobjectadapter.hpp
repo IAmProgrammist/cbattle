@@ -1,5 +1,4 @@
-#ifndef MOVEABLEOBJECTADAPTER_HPP
-#define MOVEABLEOBJECTADAPTER_HPP
+#pragma once
 
 #include <QGraphicsView>
 #include <QGraphicsItem>
@@ -41,4 +40,3 @@ public:
     }
 };
 
-#endif // MOVEABLEOBJECTADAPTER_HPP

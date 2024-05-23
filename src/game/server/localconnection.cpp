@@ -1,4 +1,5 @@
 #include <game/server/localconnection.h>
+#include <game/client/connection.h>
 
 LocalServerConnection::LocalServerConnection(GameServer* game) : ServerConnection(game) {}
 

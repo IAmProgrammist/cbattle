@@ -1,5 +1,4 @@
-#ifndef FIELD_H
-#define FIELD_H
+#pragma once
 
 #include <vector>
 
@@ -30,5 +29,3 @@ public:
     static Field generate_random();
     bool validate_ships();
 };
-
-#endif // FIELD_H

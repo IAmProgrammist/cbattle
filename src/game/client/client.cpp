@@ -1,4 +1,5 @@
 #include <game/client/client.h>
+#include <game/client/connection.h>
 
 void GameClient::on_step(int x, int y) {
     return conn->send_step(x, y);

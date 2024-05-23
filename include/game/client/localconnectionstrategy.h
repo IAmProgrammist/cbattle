@@ -1,5 +1,4 @@
-#ifndef LOCALCONNECTIONSTRATEGY_H
-#define LOCALCONNECTIONSTRATEGY_H
+#pragma once
 
 #include <models/field.h>
 #include <models/game.h>
@@ -19,7 +18,3 @@ public:
     // This one is called from server, then it is transmitted to client
     void on_update(Game g);
 };
-
-#include <game/server/connection.h>
-
-#endif // LOCALCONNECTIONSTRATEGY_H

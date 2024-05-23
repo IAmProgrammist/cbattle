@@ -1,5 +1,4 @@
-#ifndef SHIP_H
-#define SHIP_H
+#pragma once
 
 class Ship {
 public:
@@ -11,4 +10,3 @@ public:
     Ship(bool is_horizontal, int length, int x, int y);
 };
 
-#endif // SHIP_H

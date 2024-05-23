@@ -1,5 +1,4 @@
-#ifndef LOCALCONNECTION_H
-#define LOCALCONNECTION_H
+#pragma once
 
 #include <game/server/connection.h>
 #include <game/client/connection.h>
@@ -12,5 +11,3 @@ public:
     void on_step(int x, int y);
     void on_handshake(Field field, std::vector<Ship> ships);
 };
-
-#endif // LOCALCONNECTION_H

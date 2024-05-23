@@ -1,6 +1,8 @@
 #include <game/gamebuilder.h>
 
 #include <game/client/localconnectionstrategy.h>
+#include <game/client/connection.h>
+#include <game/server/server.h>
 
 LocalServerConnection* GameBuilder::establishLocalConnection(GameClient* client) {
     auto server_conn = new LocalServerConnection(server);

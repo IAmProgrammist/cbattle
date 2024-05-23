@@ -1,5 +1,4 @@
-#ifndef GAMESERVER_H
-#define GAMESERVER_H
+#pragma once
 
 #include <models/field.h>
 
@@ -16,7 +15,3 @@ public:
     Field player_one_field;
     Field player_two_field;
 };
-
-#include <game/server/connection.h>
-
-#endif // GAMESERVER_H

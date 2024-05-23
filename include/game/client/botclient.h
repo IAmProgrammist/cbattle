@@ -1,13 +1,14 @@
-#ifndef BOTCLIENT_H
-#define BOTCLIENT_H
+#pragma once
 
 #include <game/client/client.h>
 
 class BotGameClient : public GameClient {
 public:
-    BotGameClient();
+    BotGameClient() : GameClient() {
 
-    void on_update(Game g);
+    }
+
+    void on_update(Game g) {
+
+    }
 };
-
-#endif // BOTCLIENT_H
