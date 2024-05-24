@@ -12,7 +12,7 @@ public:
     ServerConnection* conn;
 
     LocalClientConnectionStrategy(GameClient* client, ServerConnection* conn);
-    void send_handshake(Field field, std::vector<Ship> ships);
+    void send_handshake(std::vector<Ship> ships);
     // This one is called from client, then it is transmitted to server
     void send_step(int x, int y);
     // This one is called from server, then it is transmitted to client

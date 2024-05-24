@@ -11,7 +11,7 @@ public:
 
     GameClient* client;
     // This one is called from client, then it is transmitted to server
-    virtual void send_handshake(Field field, std::vector<Ship> ships) = 0;
+    virtual void send_handshake(std::vector<Ship> ships) = 0;
     // This one is called from client, then it is transmitted to server
     virtual void send_step(int x, int y) = 0;
     // This one is called from server, then it is transmitted to client

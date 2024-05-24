@@ -11,14 +11,14 @@
 #define FOUR_SHIP 1
 
 enum FieldElement {
-    NOT_CHECKED,
-    EMPTY_CHECKED,
-    EXPOLSION_CHECKED
+    NOT_CHECKED = 0,
+    EMPTY_CHECKED = 1,
+    EXPOLSION_CHECKED = 2
 };
 
 class Field {
 public:
-    FieldElement field[GAME_SIZE][GAME_SIZE];
+    FieldElement field[GAME_SIZE][GAME_SIZE] = {};
     std::vector<Ship> ships;
 
     static bool are_in_bounds(int pos) {

@@ -9,8 +9,8 @@ class ClientConnection {
 public:
     ClientConnectionStrategy* strategy;
     ClientConnection(ClientConnectionStrategy* strategy) : strategy(strategy) {}
-    void send_handshake(Field field, std::vector<Ship> ships) {
-        return strategy->send_handshake(field, ships);
+    void send_handshake(std::vector<Ship> ships) {
+        return strategy->send_handshake(ships);
     }
 
     void send_step(int x, int y) {

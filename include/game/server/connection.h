@@ -13,5 +13,5 @@ public:
     // This one is supposed to be called from client
     virtual void on_step(int x, int y) = 0;
     // As well as this
-    virtual void on_handshake(Field field, std::vector<Ship> ships) = 0;
+    virtual void on_handshake(std::vector<Ship> ships) = 0;
 };

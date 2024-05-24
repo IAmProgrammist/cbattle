@@ -18,18 +18,33 @@ GameBuilder::GameBuilder() {
     this->server = new GameServer();
 };
 
-void GameBuilder::playing(GameClient* client) {
+GameBuilder& GameBuilder::playing(GameClient* client) {
     server->player_one = establishLocalConnection(client);
+    playing_client = client;
+
+    return *this;
 }
 
-void GameBuilder::playing(std::string ip, int port) {
+GameBuilder& GameBuilder::playing(std::string ip, int port) {
 
+
+    return *this;
 }
 
-void GameBuilder::vs(GameClient* client) {
+GameBuilder& GameBuilder::vs(GameClient* client) {
     server->player_two = establishLocalConnection(client);
+    vs_client = client;
+
+    return *this;
 }
 
-void GameBuilder::vs(std::string ip, int port) {
+GameBuilder& GameBuilder::vs(std::string ip, int port) {
 
+
+    return *this;
+}
+
+void GameBuilder::begin() {
+    playing_client->init();
+    vs_client->init();
 }

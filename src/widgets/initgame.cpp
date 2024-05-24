@@ -2,6 +2,7 @@
 
 #include <widgets/gamewindow.h>
 #include <game/gamebuilder.h>
+#include <game/client/botclient.h>
 
 #include "ui_initgame.h"
 
@@ -29,5 +30,12 @@ void InitGame::showEvent(QShowEvent* event) {
 }
 
 void InitGame::beginBot() {
+    auto game_view = new GameWindow(reinterpret_cast<FieldWidgetEdit*>(ui->field->scene())->field.ships);
+    auto gamebuilder = new GameBuilder();
+    auto bot_view = new BotGameClient();
+    auto k = gamebuilder->playing(game_view).vs(bot_view);
+    k.begin();
 
+    this->hide();
+    game_view->show();
 }

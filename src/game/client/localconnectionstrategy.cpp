@@ -4,8 +4,8 @@
 
 LocalClientConnectionStrategy::LocalClientConnectionStrategy(GameClient* client, ServerConnection* conn) : ClientConnectionStrategy(client), conn(conn) {}
 
-void LocalClientConnectionStrategy::send_handshake(Field field, std::vector<Ship> ships) {
-    conn->on_handshake(field, ships);
+void LocalClientConnectionStrategy::send_handshake(std::vector<Ship> ships) {
+    conn->on_handshake(ships);
 }
 
 void LocalClientConnectionStrategy::send_step(int x, int y) {

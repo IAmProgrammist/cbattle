@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>src/assets/icon.png</file>
+        <file>src/assets/boom.png</file>
+        <file>src/assets/cross_enemy.png</file>
+        <file>src/assets/cross_self.png</file>
     </qresource>
 </RCC>

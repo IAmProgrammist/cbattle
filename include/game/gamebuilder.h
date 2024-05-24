@@ -11,10 +11,12 @@ private:
 
 public:
     GameServer* server;
+    GameClient* playing_client;
+    GameClient* vs_client;
     GameBuilder();
-    void playing(GameClient* client);
-    void playing(std::string ip, int port);
-    void vs(GameClient* client);
-    void vs(std::string ip, int port);
+    GameBuilder& playing(GameClient* client);
+    GameBuilder& playing(std::string ip, int port);
+    GameBuilder& vs(GameClient* client);
+    GameBuilder& vs(std::string ip, int port);
     void begin();
 };

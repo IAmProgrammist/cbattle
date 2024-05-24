@@ -12,7 +12,6 @@ SOURCES += \
     src/game/client/client.cpp \
     src/game/client/connectionstrategy.cpp \
     src/game/client/localconnectionstrategy.cpp \
-    src/game/server/localconnection.cpp \
     src/game/server/server.cpp \
     src/game/gamebuilder.cpp \
     src/models/field.cpp \
@@ -20,8 +19,10 @@ SOURCES += \
     src/models/ship.cpp \
     src/utils/moveableobjectship.cpp \
     \
+    src/widgets/fieldstyle.cpp \
     src/widgets/fieldwidget.cpp \
     src/widgets/fieldwidgetedit.cpp \
+    src/widgets/fieldwidgetplayenemy.cpp \
     src/widgets/gamewindow.cpp \
     src/widgets/initgame.cpp \
     src/main.cpp \
@@ -41,8 +42,10 @@ HEADERS += \
     include/models/ship.h \
     include/utils/moveableobjectadapter.hpp \
     include/utils/moveableobjectship.h \
+    include/widgets/fieldstyle.h \
     include/widgets/fieldwidget.h \
     include/widgets/fieldwidgetedit.h \
+    include/widgets/fieldwidgetplayenemy.h \
     include/widgets/gamewindow.h \
     include/widgets/initgame.h \
     mytcpserver.h \

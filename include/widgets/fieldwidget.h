@@ -9,17 +9,14 @@
 
 #include <models/ship.h>
 #include <models/field.h>
+#include <widgets/fieldstyle.h>
 
 class FieldWidget : public QGraphicsScene {
     Q_OBJECT
 public:
-    static const double PADDING_PERCENT;
-    static const QPen PEN_GRID;
-    static const QPen PEN_SHIP;
-    static const QBrush BRUSH_SHIP;
     Field field;
 
-    FieldWidget(QGraphicsView *parent = nullptr) : QGraphicsScene(parent) {}
+    FieldWidget(QGraphicsView *parent = nullptr, FieldStyle style = FieldStyle()) : QGraphicsScene(parent), style(style) {}
 
     void setField(Field field);
     Field getField();
@@ -27,6 +24,7 @@ public:
     void redraw();
 
 protected:
+    FieldStyle style;
     std::pair<QPointF, QPointF> getShipScenePos(Ship& ship);
     int getCollidedShipIndex(QPointF pos);
     QPoint getCellCoordinate(QPointF scene_pos);

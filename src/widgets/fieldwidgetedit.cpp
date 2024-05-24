@@ -1,6 +1,6 @@
 #include <widgets/fieldwidgetedit.h>
 
-FieldWidgetEdit::FieldWidgetEdit(QGraphicsView *parent) : FieldWidget(parent) {}
+FieldWidgetEdit::FieldWidgetEdit(QGraphicsView *parent, FieldStyle style) : FieldWidget(parent, style) {}
 
 void FieldWidgetEdit::mouseMoveEvent( QGraphicsSceneMouseEvent *event ) {
     if (moveable_object != nullptr) {
@@ -22,7 +22,7 @@ void FieldWidgetEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
 
         if (moveable_object != nullptr) delete moveable_object;
         this->moveable_object = new MoveableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, QPointF(ship_data.first.x() - event->scenePos().x(),
-                                                                                                                        ship_data.first.y() - event->scenePos().y()));
+                                                                                                                        ship_data.first.y() - event->scenePos().y()), style);
         this->moveable_object->on_update_scene_pos(newPos);
     } else if (event->button() == Qt::RightButton && this->moveable_object) {
         auto ship = this->moveable_object->getObject();
@@ -30,7 +30,7 @@ void FieldWidgetEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
         auto offset = this->moveable_object->getOffset();
 
         delete this->moveable_object;
-        this->moveable_object = new MoveableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, offset);
+        this->moveable_object = new MoveableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, offset, style);
         this->moveable_object->on_update_scene_pos(newPos);
     }
 }
@@ -38,8 +38,8 @@ void FieldWidgetEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
 void FieldWidgetEdit::mouseReleaseEvent( QGraphicsSceneMouseEvent *event ){
     if (event->button() == Qt::LeftButton && moveable_object) {
         auto parent = reinterpret_cast<QGraphicsView*>(this->parent());
-        double height = parent->height() - PEN_GRID.width();
-        double width = parent->width() - PEN_GRID.width();
+        double height = parent->height() - style.get_pen_grid().width();
+        double width = parent->width() - style.get_pen_grid().width();
         double tile_size_height = height / GAME_SIZE;
         double tile_size_width = width / GAME_SIZE;
         auto ship = moveable_object->getObject();
