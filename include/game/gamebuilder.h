@@ -10,13 +10,14 @@ private:
     LocalServerConnection* establishLocalConnection(GameClient* client);
 
 public:
-    GameServer* server;
-    GameClient* playing_client;
-    GameClient* vs_client;
+    GameServer* server = nullptr;
+    GameClient* playing_client = nullptr;
+    GameClient* vs_client = nullptr;
     GameBuilder();
     GameBuilder& playing(GameClient* client);
     GameBuilder& playing(std::string ip, int port);
     GameBuilder& vs(GameClient* client);
     GameBuilder& vs(std::string ip, int port);
     void begin();
+    void destroy();
 };

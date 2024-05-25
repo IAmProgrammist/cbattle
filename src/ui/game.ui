@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>GameWindow</class>
- <widget class="QMainWindow" name="GameWindow">
+ <widget class="QDialog" name="GameWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +17,15 @@
    <iconset resource="../../resources.qrc">
     <normaloff>:/src/assets/icon.png</normaloff>:/src/assets/icon.png</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>950</width>
+     <height>600</height>
+    </rect>
+   </property>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -171,7 +179,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="surrender">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
            <horstretch>0</horstretch>

@@ -6,8 +6,8 @@
 
 #define GAME_SIZE 10
 #define ONE_SHIP 4
-#define THREE_SHIP 3
-#define TWO_SHIP 2
+#define TWO_SHIP 3
+#define THREE_SHIP 2
 #define FOUR_SHIP 1
 
 enum FieldElement {

@@ -2,3 +2,5 @@
 
 
 ClientConnectionStrategy::ClientConnectionStrategy(GameClient* client) : client(client) {}
+
+ClientConnectionStrategy::~ClientConnectionStrategy() {}

@@ -5,12 +5,14 @@
 
 #include "ui_game.h"
 
-GameWindow::GameWindow(std::vector<Ship> ships, QWidget *parent) : QMainWindow(parent), ui(new Ui::GameWindow) {
+GameWindow::GameWindow(std::vector<Ship> ships, QWidget *parent) : QDialog(parent), ui(new Ui::GameWindow) {
     ui->setupUi(this);
     this->ships = ships;
 
     ui->enemyfield->setScene(nullptr);
     ui->yourfield->setScene(nullptr);
+
+    this->connect(ui->surrender, &QPushButton::clicked, this, &GameWindow::surrender);
 }
 
 GameWindow::~GameWindow(){
@@ -19,7 +21,7 @@ GameWindow::~GameWindow(){
 }
 
 void GameWindow::showEvent(QShowEvent* event) {
-    QMainWindow::showEvent(event);
+    QDialog::showEvent(event);
 
     if (this->ui->enemyfield->scene() == nullptr) {
         this->enemy_field = new FieldWidgetPlayEnemy(this,
@@ -48,13 +50,42 @@ void GameWindow::on_update(Game g) {
         this->own_field->redraw();
     }
 
-    if (this->game.youre_going) {
-        this->ui->whose_turn->setText("Ваш ход!");
+    if (!this->game.game_over) {
+        if (this->game.youre_going) {
+            this->ui->whose_turn->setText("Ваш ход");
+        } else {
+            this->ui->whose_turn->setText("Ход противника");
+        }
     } else {
-        this->ui->whose_turn->setText("Ход противника!");
+        if (this->game.youre_winner) {
+            this->ui->whose_turn->setText("Вы победили");
+        } else {
+            this->ui->whose_turn->setText("Вы проиграли");
+        }
+    }
+}
+
+void GameWindow::on_error(ErrorCode error) {
+    switch (error) {
+    case NO_HANDSHAKE:
+    case BAD_HANDSHAKE:
+        handshake_ok = false;
+        this->close();
+        break;
+    default:
+        break;
     }
 }
 
 void GameWindow::init() {
+    this->handshake_ok = true;
     this->conn->send_handshake(this->ships);
+}
+
+void GameWindow::closeEvent(QCloseEvent* event) {
+    this->on_surrender();
+}
+
+void GameWindow::surrender() {
+    this->close();
 }

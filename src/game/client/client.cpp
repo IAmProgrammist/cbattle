@@ -8,3 +8,7 @@ void GameClient::on_step(int x, int y) {
 void GameClient::on_handshake(std::vector<Ship> ships) {
     return conn->send_handshake(ships);
 }
+
+void GameClient::on_surrender() {
+    return conn->on_surrender();
+}

@@ -4,21 +4,22 @@
 #include <models/game.h>
 
 #include <game/client/connectionstrategy.h>
+#include <game/server/server.h>
 
 class ClientConnection {
 public:
     ClientConnectionStrategy* strategy;
-    ClientConnection(ClientConnectionStrategy* strategy) : strategy(strategy) {}
-    void send_handshake(std::vector<Ship> ships) {
-        return strategy->send_handshake(ships);
-    }
+    ClientConnection(ClientConnectionStrategy* strategy);
 
-    void send_step(int x, int y) {
-        return strategy->send_step(x, y);
-    }
+    ~ClientConnection();
 
-    void on_update(Game g) {
-        return strategy->on_update(g);
-    }
+    void send_handshake(std::vector<Ship> ships);
 
+    void send_step(int x, int y);
+
+    void on_update(Game g);
+
+    void on_error(ErrorCode error);
+
+    void on_surrender();
 };

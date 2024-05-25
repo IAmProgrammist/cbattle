@@ -48,3 +48,15 @@ void GameBuilder::begin() {
     playing_client->init();
     vs_client->init();
 }
+
+void GameBuilder::destroy() {
+    auto playing_conn = playing_client->conn;
+    playing_client->conn = nullptr;
+    delete playing_conn;
+
+    auto vs_conn = vs_client->conn;
+    vs_client->conn = nullptr;
+    delete vs_conn;
+
+    delete server;
+}

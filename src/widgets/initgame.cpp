@@ -30,12 +30,18 @@ void InitGame::showEvent(QShowEvent* event) {
 }
 
 void InitGame::beginBot() {
-    auto game_view = new GameWindow(reinterpret_cast<FieldWidgetEdit*>(ui->field->scene())->field.ships);
+    game_window = new GameWindow(reinterpret_cast<FieldWidgetEdit*>(ui->field->scene())->field.ships);
     auto gamebuilder = new GameBuilder();
     auto bot_view = new BotGameClient();
-    auto k = gamebuilder->playing(game_view).vs(bot_view);
+    auto k = gamebuilder->playing(game_window).vs(bot_view);
     k.begin();
 
-    this->hide();
-    game_view->show();
+    if (game_window->handshake_ok) {
+        this->hide();
+        game_window->exec();
+    }
+    this->show();
+
+    gamebuilder->destroy();
+    delete bot_view;
 }
