@@ -8,7 +8,7 @@ class FieldWidgetEdit : public FieldWidget {
 
     MoveableObjectShip* moveable_object = nullptr;
 public:
-    FieldWidgetEdit(QGraphicsView *parent = nullptr);
+    FieldWidgetEdit(QGraphicsView *parent = nullptr, FieldStyle* style = &FieldStyle::STYLE_EDIT);
 protected:
     void mouseMoveEvent( QGraphicsSceneMouseEvent *event );
     void mousePressEvent( QGraphicsSceneMouseEvent *event );

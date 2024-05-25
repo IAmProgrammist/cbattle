@@ -1,6 +1,6 @@
 #include <widgets/fieldwidgetedit.h>
 
-FieldWidgetEdit::FieldWidgetEdit(QGraphicsView *parent, FieldStyle style) : FieldWidget(parent, style) {}
+FieldWidgetEdit::FieldWidgetEdit(QGraphicsView *parent, FieldStyle *style) : FieldWidget(parent, style) {}
 
 void FieldWidgetEdit::mouseMoveEvent( QGraphicsSceneMouseEvent *event ) {
     if (moveable_object != nullptr) {
@@ -38,8 +38,8 @@ void FieldWidgetEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
 void FieldWidgetEdit::mouseReleaseEvent( QGraphicsSceneMouseEvent *event ){
     if (event->button() == Qt::LeftButton && moveable_object) {
         auto parent = reinterpret_cast<QGraphicsView*>(this->parent());
-        double height = parent->height() - style.get_pen_grid().width();
-        double width = parent->width() - style.get_pen_grid().width();
+        double height = parent->height() - style->get_pen_grid().width();
+        double width = parent->width() - style->get_pen_grid().width();
         double tile_size_height = height / GAME_SIZE;
         double tile_size_width = width / GAME_SIZE;
         auto ship = moveable_object->getObject();

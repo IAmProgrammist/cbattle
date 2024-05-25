@@ -11,6 +11,6 @@ protected:
     QGraphicsItem* construct_object();
 
 public:
-    MoveableObjectShip(QGraphicsView* parent, Ship object, QPointF offset, FieldStyle style);
+    MoveableObjectShip(QGraphicsView* parent, Ship object, QPointF offset, FieldStyle* style);
 };
 

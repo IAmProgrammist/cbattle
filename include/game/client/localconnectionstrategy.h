@@ -2,6 +2,7 @@
 
 #include <models/field.h>
 #include <models/game.h>
+#include <mutex>
 
 #include <game/client/connectionstrategy.h>
 
@@ -10,6 +11,7 @@ class ServerConnection;
 class LocalClientConnectionStrategy : public ClientConnectionStrategy {
 public:
     ServerConnection* conn;
+    std::mutex update_mutex;
 
     LocalClientConnectionStrategy(GameClient* client, ServerConnection* conn);
     void send_handshake(std::vector<Ship> ships);

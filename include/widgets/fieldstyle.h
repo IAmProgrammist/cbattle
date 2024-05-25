@@ -4,19 +4,42 @@
 #include <QBrush>
 
 class FieldStyle {
-    const double padding_percent = 0;
-    const QPen pen_grid = QPen(Qt::gray, 3);
-    const QPen pen_ship = QPen(Qt::blue, 3);
-    const QBrush brush_ship = QColor(0, 0, 255, 30);
+    double padding_percent;
+    QPen pen_grid;
+    QPen pen_ship;
+    QBrush brush_ship;
+    QPixmap* cross_img;
+    QPixmap* explosion_img;
+
+    FieldStyle(std::optional<double> padding_percent = std::nullopt,
+               std::optional<QPen> pen_grid = std::nullopt,
+               std::optional<QPen> pen_ship = std::nullopt,
+               std::optional<QBrush> brush_ship = std::nullopt,
+               std::optional<std::string> cross = std::nullopt,
+               std::optional<std::string> exposion = std::nullopt);
+
+    FieldStyle(int _);
+
+    ~FieldStyle();
 
 public:
-    FieldStyle(double padding_percent = 0,
-               QPen pen_grid = QPen(Qt::gray, 3),
-               QPen pen_ship = QPen(Qt::blue, 3),
-               QBrush brush_ship = QColor(0, 0, 255, 30));
+    static double DEFAULT_PADDING_PERCENT;
+    static QPen DEFAULT_PEN_GRID;
+    static QPen DEFAULT_PEN_SHIP;
+    static QBrush DEFAULT_BRUSH_SHIP;
+    static std::string DEFAULT_CROSS;
+    static std::string DEFAULT_EXPLOSION;
+
+    static FieldStyle STYLE_EDIT;
+    static FieldStyle STYLE_PLAY_SELF;
+    static FieldStyle STYLE_PLAY_ENEMY;
+
+    static void init_styles();
 
     double get_padding_percent();
     QPen get_pen_grid();
     QPen get_pen_ship();
     QBrush get_brush_ship();
+    QPixmap& get_cross_img();
+    QPixmap& get_exposion_img();
 };

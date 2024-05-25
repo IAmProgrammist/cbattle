@@ -47,9 +47,9 @@ void GameServer::on_step(ServerConnection* player, int xx, int yy) {
     bool selected = false;
 
     if (player == player_one && going_one) {
+        selected_field = &player_two_field;
         selected = true;
     } else if (player == player_two && !going_one) {
-        selected_field = &player_two_field;
         selected = true;
     }
 
@@ -74,7 +74,7 @@ void GameServer::on_step(ServerConnection* player, int xx, int yy) {
             for (int y = ship.y; y < ship.y + ship.length; y++) {
                 if (y != yy || ship.x != xx) continue;
 
-                player_one_field.field[yy][xx] = FieldElement::EXPOLSION_CHECKED;
+                selected_field->field[yy][xx] = FieldElement::EXPOLSION_CHECKED;
                 if (is_covered(*selected_field, ship))
                     cover_ship(*selected_field, ship);
 
@@ -106,12 +106,13 @@ void GameServer::send_update() {
 }
 
 bool GameServer::is_covered(Field& field, Ship& ship) {
-    if (ship.is_horizontal)
+    if (ship.is_horizontal) {
         for (int x = ship.x; x < ship.x + ship.length; x++)
             if (field.field[ship.y][x] != FieldElement::EXPOLSION_CHECKED) return false;
-    else
+    } else {
         for (int y = ship.y; y < ship.y + ship.length; y++)
             if (field.field[y][ship.x] != FieldElement::EXPOLSION_CHECKED) return false;
+    }
 
     return true;
 }

@@ -16,7 +16,7 @@ class FieldWidget : public QGraphicsScene {
 public:
     Field field;
 
-    FieldWidget(QGraphicsView *parent = nullptr, FieldStyle style = FieldStyle()) : QGraphicsScene(parent), style(style) {}
+    FieldWidget(QGraphicsView *parent = nullptr, FieldStyle* style = &FieldStyle::STYLE_PLAY_SELF) : QGraphicsScene(parent), style(style) {}
 
     void setField(Field field);
     Field getField();
@@ -24,7 +24,7 @@ public:
     void redraw();
 
 protected:
-    FieldStyle style;
+    FieldStyle* style;
     std::pair<QPointF, QPointF> getShipScenePos(Ship& ship);
     int getCollidedShipIndex(QPointF pos);
     QPoint getCellCoordinate(QPointF scene_pos);

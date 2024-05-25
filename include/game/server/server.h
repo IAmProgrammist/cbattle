@@ -10,7 +10,7 @@ class GameServer {
 public:
     GameServer();
 
-    std::mutex game_state;
+    std::mutex game_state_write;
     bool going_one = true;
     ServerConnection* player_one;
     ServerConnection* player_two;

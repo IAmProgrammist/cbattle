@@ -5,6 +5,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    FieldStyle::init_styles();
     InitGame init_game;
     init_game.show();
 
