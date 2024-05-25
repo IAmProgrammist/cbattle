@@ -2,6 +2,7 @@
 #include <game/client/connection.h>
 #include <widgets/fieldwidgetplayenemy.h>
 #include <QPen>
+#include <QTcpServer>
 
 #include "ui_game.h"
 

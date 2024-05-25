@@ -14,6 +14,7 @@ SOURCES += \
     src/game/client/connection.cpp \
     src/game/client/connectionstrategy.cpp \
     src/game/client/localconnectionstrategy.cpp \
+    src/game/client/tcpconnectionstrategy.cpp \
     src/game/server/server.cpp \
     src/game/gamebuilder.cpp \
     src/models/field.cpp \
@@ -35,10 +36,12 @@ HEADERS += \
     include/game/client/connection.h \
     include/game/client/connectionstrategy.h \
     include/game/client/localconnectionstrategy.h \
+    include/game/client/tcpconnectionstrategy.h \
     include/game/server/connection.h \
     include/game/server/localconnection.h \
     include/game/server/server.h \
     include/game/gamebuilder.h \
+    include/game/server/tcpconnection.h \
     include/models/field.h \
     include/models/game.h \
     include/models/ship.h \

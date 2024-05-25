@@ -12,7 +12,18 @@ InitGame::InitGame(QWidget *parent) : QMainWindow(parent), ui(new Ui::InitGame) 
     ui->field->setMouseTracking(true);
     ui->field->setScene(nullptr);
 
+    this->server = new QTcpServer(this);
+    this->server->listen();
+    qDebug() << this->server->serverAddress() << " " << this->server->serverPort();
+
+    this->connect(this->server, &QTcpServer::newConnection, this, &InitGame::newConnection);
     this->connect(ui->begin_bot, &QPushButton::clicked, this, &InitGame::beginBot);
+    //this->connect(ui->begin_create, &QPushButton::clicked, this, &Init)
+}
+
+void InitGame::newConnection() {
+    qDebug() << "I am connected!";
+    QTcpSocket* socket = this->server->nextPendingConnection();
 }
 
 InitGame::~InitGame(){

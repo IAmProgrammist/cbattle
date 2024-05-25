@@ -22,8 +22,10 @@ public:
 private:
     Ui::InitGame *ui;
     GameWindow* game_window;
+    QTcpServer* server = nullptr;
 protected:
     void showEvent(QShowEvent* event);
     void beginBot();
+    void newConnection();
 };
 

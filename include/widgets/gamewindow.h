@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QDialog>
+#include <QTcpServer>
 
 #include <game/client/client.h>
 #include <widgets/fieldwidgetplayenemy.h>

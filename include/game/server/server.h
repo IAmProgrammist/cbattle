@@ -7,15 +7,15 @@
 class ServerConnection;
 
 enum ErrorCode {
-    BAD_HANDSHAKE,
-    BAD_STEP,
-    NO_HANDSHAKE,
-    ALREADY_HANDSHAKE
+    BAD_HANDSHAKE = 0,
+    BAD_STEP = 1,
+    NO_HANDSHAKE = 2,
+    ALREADY_HANDSHAKE = 3
 };
 
 enum WinningReason {
-    FAIR,
-    SURRENDER
+    FAIR = 0,
+    SURRENDER = 1
 };
 
 class GameServer {
