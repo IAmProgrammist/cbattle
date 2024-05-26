@@ -4,5 +4,6 @@
         <file>src/assets/boom.png</file>
         <file>src/assets/cross_enemy.png</file>
         <file>src/assets/cross_self.png</file>
+        <file>src/assets/icon.ico</file>
     </qresource>
 </RCC>

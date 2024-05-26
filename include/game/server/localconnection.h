@@ -1,7 +1,5 @@
 #pragma once
 
-#include <thread>
-
 #include <game/server/connection.h>
 #include <game/client/connection.h>
 #include <game/server/localconnection.h>

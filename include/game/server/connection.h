@@ -3,8 +3,6 @@
 #include <models/game.h>
 #include <game/server/server.h>
 
-class GameServer;
-
 class ServerConnection {
 public:
     GameServer* game;
