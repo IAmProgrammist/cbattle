@@ -34,12 +34,12 @@ public:
     static FieldStyle STYLE_PLAY_SELF;
     static FieldStyle STYLE_PLAY_ENEMY;
 
-    static void init_styles();
+    static void initStyles();
 
-    double get_padding_percent();
-    QPen get_pen_grid();
-    QPen get_pen_ship();
-    QBrush get_brush_ship();
-    QPixmap& get_cross_img();
-    QPixmap& get_exposion_img();
+    double getPaddingPercent();
+    QPen getPenGrid();
+    QPen getPenShip();
+    QBrush getBrushShip();
+    QPixmap& getCrossImg();
+    QPixmap& getExplosionImg();
 };

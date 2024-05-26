@@ -11,7 +11,7 @@ BotGameClient::BotGameClient() : GameClient() {
 
 BotGameClient::~BotGameClient() {}
 
-void BotGameClient::on_update(Game g) {
+void BotGameClient::onUpdate(Game g) {
     this->game = g;
     if (g.game_over) return;
     if (!g.youre_going) {
@@ -30,8 +30,8 @@ void BotGameClient::on_update(Game g) {
         std::vector<Suspicion> suses = {
             Suspicion(prev_x - 1, prev_y, LEFT),
             Suspicion(prev_x + 1, prev_y, RIGHT),
-            Suspicion(prev_x, prev_y + 1, UP),
-            Suspicion(prev_x, prev_y - 1, DOWN)
+            Suspicion(prev_x, prev_y - 1, UP),
+            Suspicion(prev_x, prev_y + 1, DOWN)
         };
         std::random_shuffle(suses.begin(), suses.end());
         for (auto& sus : suses) {
@@ -47,7 +47,7 @@ void BotGameClient::on_update(Game g) {
         prev_y = sus.y;
 
         prev_step_mine = true;
-        this->on_step(sus.x, sus.y);
+        this->onStep(sus.x, sus.y);
 
         return;
     }
@@ -63,21 +63,21 @@ void BotGameClient::on_update(Game g) {
             prev_x = x;
             prev_y = y;
             prev_suspicion = Suspicion();
-
-            this->on_step(x, y);
+            
+            this->onStep(x, y);
 
             return;
         }
     }
 }
 
-void BotGameClient::on_error(ErrorCode error) {
+void BotGameClient::onError(ErrorCode error) {
     switch (error) {
     case BAD_HANDSHAKE:
         break;
     case BAD_STEP:
         prev_step_mine = false;
-        on_update(this->game);
+        onUpdate(this->game);
         break;
     case NO_HANDSHAKE:
         init();
@@ -88,6 +88,6 @@ void BotGameClient::on_error(ErrorCode error) {
 }
 
 void BotGameClient::init() {
-    auto data = Field::generate_random();
-    this->on_handshake(data.ships);
+    auto data = Field::generateRandom();
+    this->onHandshake(data.ships);
 }

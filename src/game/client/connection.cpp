@@ -6,22 +6,22 @@ ClientConnection::~ClientConnection() {
     delete strategy;
 }
 
-void ClientConnection::send_handshake(std::vector<Ship> ships) {
-    return strategy->send_handshake(ships);
+void ClientConnection::sendHandshake(std::vector<Ship> ships) {
+    return strategy->sendHandshake(ships);
 }
 
-void ClientConnection::send_step(int x, int y) {
-    return strategy->send_step(x, y);
+void ClientConnection::sendStep(int x, int y) {
+    return strategy->sendStep(x, y);
 }
 
-void ClientConnection::on_update(Game g) {
-    return strategy->on_update(g);
+void ClientConnection::onUpdate(Game g) {
+    return strategy->onUpdate(g);
 }
 
-void ClientConnection::on_error(ErrorCode error) {
-    return strategy->on_error(error);
+void ClientConnection::onError(ErrorCode error) {
+    return strategy->onError(error);
 }
 
-void ClientConnection::on_surrender() {
-    return strategy->on_surrender();
+void ClientConnection::onSurrender() {
+    return strategy->onSurrender();
 }

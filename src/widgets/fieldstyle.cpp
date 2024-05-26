@@ -33,7 +33,7 @@ FieldStyle::FieldStyle(int _) {
     delete this->explosion_img;
 }
 
-void FieldStyle::init_styles() {
+void FieldStyle::initStyles() {
     FieldStyle::STYLE_EDIT = FieldStyle();
     FieldStyle::STYLE_PLAY_SELF = FieldStyle();
     FieldStyle::STYLE_PLAY_ENEMY = FieldStyle(
@@ -48,21 +48,21 @@ void FieldStyle::init_styles() {
 FieldStyle::~FieldStyle() {
 }
 
-double FieldStyle::get_padding_percent() {
+double FieldStyle::getPaddingPercent() {
     return this->padding_percent;
 }
-QPen FieldStyle::get_pen_grid() {
+QPen FieldStyle::getPenGrid() {
     return this->pen_grid;
 }
-QPen FieldStyle::get_pen_ship() {
+QPen FieldStyle::getPenShip() {
     return this->pen_ship;
 }
-QBrush FieldStyle::get_brush_ship() {
+QBrush FieldStyle::getBrushShip() {
     return this->brush_ship;
 }
-QPixmap& FieldStyle::get_cross_img() {
+QPixmap& FieldStyle::getCrossImg() {
     return *this->cross_img;
 }
-QPixmap& FieldStyle::get_exposion_img() {
+QPixmap& FieldStyle::getExplosionImg() {
     return *this->explosion_img;
 }

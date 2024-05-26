@@ -21,11 +21,11 @@ public:
     FieldElement field[GAME_SIZE][GAME_SIZE] = {};
     std::vector<Ship> ships;
 
-    static bool are_in_bounds(int pos) {
+    static bool areInBounds(int pos) {
         return pos >= 0 && pos < GAME_SIZE;
     }
 
 public:
-    static Field generate_random();
-    bool validate_ships();
+    static Field generateRandom();
+    bool validateShips();
 };

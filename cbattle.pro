@@ -15,8 +15,11 @@ SOURCES += \
     src/game/client/connectionstrategy.cpp \
     src/game/client/localconnectionstrategy.cpp \
     src/game/client/tcpconnectionstrategy.cpp \
+    src/game/server/conneciton.cpp \
+    src/game/server/localconnection.cpp \
     src/game/server/server.cpp \
     src/game/gamebuilder.cpp \
+    src/game/server/tcpconnection.cpp \
     src/models/field.cpp \
     src/models/game.cpp \
     src/models/ship.cpp \

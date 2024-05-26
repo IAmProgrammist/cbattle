@@ -1,18 +1,17 @@
 #pragma once
 
-#include <models/game.h>
+#include <game/client/connection.h>
 #include <game/server/server.h>
-
-class ClientConnection;
+#include <models/game.h>
 
 class GameClient {
 public:
     ClientConnection *conn;
     // This method should be overriden on use
-    virtual void on_update(Game g) = 0;
-    virtual void on_error(ErrorCode error) = 0;
+    virtual void onUpdate(Game g) = 0;
+    virtual void onError(ErrorCode error) = 0;
     virtual void init() = 0;
-    virtual void on_step(int x, int y);
-    virtual void on_handshake(std::vector<Ship> ships);
-    virtual void on_surrender();
+    virtual void onStep(int x, int y);
+    virtual void onHandshake(std::vector<Ship> ships);
+    virtual void onSurrender();
 };

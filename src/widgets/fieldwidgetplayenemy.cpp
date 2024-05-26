@@ -6,7 +6,7 @@ void FieldWidgetPlayEnemy::mousePressEvent( QGraphicsSceneMouseEvent *event ){
     if (event->button() == Qt::LeftButton) {
         auto cell = getCellCoordinate({event->scenePos().x(),
                                        event->scenePos().y()});
-
-        this->client->on_step(cell.x(), cell.y());
+        
+        this->client->onStep(cell.x(), cell.y());
     }
 }

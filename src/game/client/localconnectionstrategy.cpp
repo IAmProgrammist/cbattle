@@ -6,22 +6,22 @@ LocalClientConnectionStrategy::LocalClientConnectionStrategy(GameClient* client,
 
 LocalClientConnectionStrategy::~LocalClientConnectionStrategy() {}
 
-void LocalClientConnectionStrategy::send_handshake(std::vector<Ship> ships) {
-    conn->on_handshake(ships);
+void LocalClientConnectionStrategy::sendHandshake(std::vector<Ship> ships) {
+    conn->onHandshake(ships);
 }
 
-void LocalClientConnectionStrategy::send_step(int x, int y) {
-    conn->on_step(x, y);
+void LocalClientConnectionStrategy::sendStep(int x, int y) {
+    conn->onStep(x, y);
 }
 
-void LocalClientConnectionStrategy::on_update(Game g) {
-    this->client->on_update(g);
+void LocalClientConnectionStrategy::onUpdate(Game g) {
+    this->client->onUpdate(g);
 }
 
-void LocalClientConnectionStrategy::on_error(ErrorCode error) {
-    this->client->on_error(error);
+void LocalClientConnectionStrategy::onError(ErrorCode error) {
+    this->client->onError(error);
 }
 
-void LocalClientConnectionStrategy::on_surrender() {
-    conn->on_surrender();
+void LocalClientConnectionStrategy::onSurrender() {
+    conn->onSurrender();
 }

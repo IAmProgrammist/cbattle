@@ -5,7 +5,7 @@ FieldWidgetEdit::FieldWidgetEdit(QGraphicsView *parent, FieldStyle *style) : Fie
 void FieldWidgetEdit::mouseMoveEvent( QGraphicsSceneMouseEvent *event ) {
     if (moveable_object != nullptr) {
         QPointF newPos = event->scenePos();
-        moveable_object->on_update_scene_pos(newPos);
+        moveable_object->onUpdateScenePos(newPos);
     }
 }
 
@@ -23,7 +23,7 @@ void FieldWidgetEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
         if (moveable_object != nullptr) delete moveable_object;
         this->moveable_object = new MoveableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, QPointF(ship_data.first.x() - event->scenePos().x(),
                                                                                                                         ship_data.first.y() - event->scenePos().y()), style);
-        this->moveable_object->on_update_scene_pos(newPos);
+        this->moveable_object->onUpdateScenePos(newPos);
     } else if (event->button() == Qt::RightButton && this->moveable_object) {
         auto ship = this->moveable_object->getObject();
         ship.is_horizontal = !ship.is_horizontal;
@@ -31,15 +31,15 @@ void FieldWidgetEdit::mousePressEvent( QGraphicsSceneMouseEvent *event ){
 
         delete this->moveable_object;
         this->moveable_object = new MoveableObjectShip(reinterpret_cast<QGraphicsView*>(this->parent()), ship, offset, style);
-        this->moveable_object->on_update_scene_pos(newPos);
+        this->moveable_object->onUpdateScenePos(newPos);
     }
 }
 
 void FieldWidgetEdit::mouseReleaseEvent( QGraphicsSceneMouseEvent *event ){
     if (event->button() == Qt::LeftButton && moveable_object) {
         auto parent = reinterpret_cast<QGraphicsView*>(this->parent());
-        double height = parent->height() - style->get_pen_grid().width();
-        double width = parent->width() - style->get_pen_grid().width();
+        double height = parent->height() - style->getPenGrid().width();
+        double width = parent->width() - style->getPenGrid().width();
         double tile_size_height = height / GAME_SIZE;
         double tile_size_width = width / GAME_SIZE;
         auto ship = moveable_object->getObject();

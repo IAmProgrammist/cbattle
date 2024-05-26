@@ -22,7 +22,7 @@ protected:
     virtual QGraphicsItem* construct_object() = 0;
 
 public:
-    void on_update_scene_pos(QPointF& pos) {
+    void onUpdateScenePos(QPointF& pos) {
         graph_object->setPos(QPointF(pos.x() + this->offset.x(), pos.y() + this->offset.y()));
     }
 

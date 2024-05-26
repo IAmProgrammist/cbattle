@@ -39,7 +39,7 @@ void GameWindow::showEvent(QShowEvent* event) {
     }
 }
 
-void GameWindow::on_update(Game g) {
+void GameWindow::onUpdate(Game g) {
     this->game = g;
 
     if (this->enemy_field) {
@@ -69,7 +69,7 @@ void GameWindow::on_update(Game g) {
     }
 }
 
-void GameWindow::on_error(ErrorCode error) {
+void GameWindow::onError(ErrorCode error) {
     switch (error) {
     case NO_HANDSHAKE:
     case BAD_HANDSHAKE:
@@ -83,11 +83,11 @@ void GameWindow::on_error(ErrorCode error) {
 
 void GameWindow::init() {
     this->handshake_ok = true;
-    this->conn->send_handshake(this->ships);
+    this->conn->sendHandshake(this->ships);
 }
 
 void GameWindow::closeEvent(QCloseEvent* event) {
-    this->on_surrender();
+    this->onSurrender();
 }
 
 void GameWindow::surrender() {

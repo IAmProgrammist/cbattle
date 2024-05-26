@@ -6,14 +6,12 @@
 class ServerConnection {
 public:
     GameServer* game;
-    ServerConnection(GameServer* game) : game(game) {};
-    virtual ~ServerConnection() {}
-    // This one is supposed to be called from server
-    virtual void send_update(Game g) = 0;
-    virtual void send_error(ErrorCode error) = 0;
-    // This one is supposed to be called from client
-    virtual void on_step(int x, int y) = 0;
-    // As well as this
-    virtual void on_handshake(std::vector<Ship> ships) = 0;
-    virtual void on_surrender() = 0;
+    ServerConnection(GameServer* game);
+    virtual ~ServerConnection();
+
+    virtual void sendUpdate(Game g) = 0;
+    virtual void sendError(ErrorCode error) = 0;
+    virtual void onStep(int x, int y) = 0;
+    virtual void onHandshake(std::vector<Ship> ships) = 0;
+    virtual void onSurrender() = 0;
 };

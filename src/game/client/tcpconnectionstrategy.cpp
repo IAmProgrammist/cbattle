@@ -31,7 +31,7 @@ void TCPClientConnectionStrategy::onReadyRead() {
             std::stringstream input(temp.toStdString().substr(7));
             int code;
             input >> code;
-            on_error(static_cast<ErrorCode>(code));
+            onError(static_cast<ErrorCode>(code));
         } else if (temp.toStdString().rfind("update: ", 0) == 0) {
             std::stringstream input(temp.toStdString().substr(8));
             Game g;
@@ -84,7 +84,7 @@ void TCPClientConnectionStrategy::onReadyRead() {
                 g.enemy_field.ships.push_back(Ship(is_horizontal, length, x, y));
             }
 
-            on_update(g);
+            onUpdate(g);
         }
 
         temp.clear();
@@ -93,7 +93,7 @@ void TCPClientConnectionStrategy::onReadyRead() {
     // Parse data from server here:
 }
 
-void TCPClientConnectionStrategy::send_handshake(std::vector<Ship> ships) {
+void TCPClientConnectionStrategy::sendHandshake(std::vector<Ship> ships) {
     std::stringstream output;
     output << "handshake: " << ships.size() << " ";
     for (auto & ship : ships) {
@@ -105,24 +105,24 @@ void TCPClientConnectionStrategy::send_handshake(std::vector<Ship> ships) {
     conn->flush();
 }
 
-void TCPClientConnectionStrategy::send_step(int x, int y) {
+void TCPClientConnectionStrategy::sendStep(int x, int y) {
     std::stringstream output;
     output << "step: " << x << " " << y << "\n";
     conn->write(output.str().c_str());
     conn->flush();
 }
 
-void TCPClientConnectionStrategy::on_surrender() {
+void TCPClientConnectionStrategy::onSurrender() {
     std::stringstream output;
     output << "surrender: \n";
     conn->write(output.str().c_str());
     conn->flush();
 }
 
-void TCPClientConnectionStrategy::on_update(Game g) {
-    this->client->on_update(g);
+void TCPClientConnectionStrategy::onUpdate(Game g) {
+    this->client->onUpdate(g);
 }
 
-void TCPClientConnectionStrategy::on_error(ErrorCode error) {
-    this->client->on_error(error);
+void TCPClientConnectionStrategy::onError(ErrorCode error) {
+    this->client->onError(error);
 }

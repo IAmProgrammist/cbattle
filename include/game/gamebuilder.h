@@ -1,9 +1,10 @@
 #pragma once
 
+#include <QTcpServer>
+
 #include <game/client/client.h>
 #include <game/server/localconnection.h>
 #include <game/server/server.h>
-#include <QTcpServer>
 
 class GameBuilder {
 private:

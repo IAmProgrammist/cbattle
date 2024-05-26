@@ -1,7 +1,5 @@
 #pragma once
 
-#include <mutex>
-
 #include <models/field.h>
 
 class ServerConnection;
@@ -23,25 +21,25 @@ public:
     GameServer();
     ~GameServer();
 
-    std::mutex game_state_write;
     bool going_one = true;
     bool game_over = false;
     bool player_one_won = false;
     WinningReason winning_reason = FAIR;
+
     ServerConnection* player_one;
-    ServerConnection* player_two;
+    Field player_one_field;
     bool player_one_validated = false;
+
+    ServerConnection* player_two;
+    Field player_two_field;
     bool player_two_validated = false;
 
-    Field player_one_field;
-    Field player_two_field;
-
-    void on_handshake(ServerConnection* player, std::vector<Ship> ships);
-    void on_step(ServerConnection* player, int x, int y);
-    void on_surrender(ServerConnection* player);
-    void check_game_over();
-    void send_update();
+    void onHandshake(ServerConnection* player, std::vector<Ship> ships);
+    void onStep(ServerConnection* player, int x, int y);
+    void onSurrender(ServerConnection* player);
+    void checkGameOver();
+    void sendUpdate();
 protected:
-    static bool is_covered(Field& field, Ship& ship);
-    static void cover_ship(Field& field, Ship& ship);
+    static bool isCovered(Field& field, Ship& ship);
+    static void coverShip(Field& field, Ship& ship);
 };

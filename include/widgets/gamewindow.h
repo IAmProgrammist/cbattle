@@ -19,8 +19,8 @@ public:
 
     explicit GameWindow(std::vector<Ship> ships, QWidget *parent = nullptr);
     ~GameWindow();
-    void on_update(Game g);
-    void on_error(ErrorCode error);
+    void onUpdate(Game g);
+    void onError(ErrorCode error);
     void init();
 private:
     Ui::GameWindow *ui;

@@ -115,7 +115,7 @@ void InitGame::showEvent(QShowEvent* event) {
 
     if (ui->field->scene()) return;
     auto scene = new FieldWidgetEdit(ui->field);
-    scene->setField(Field::generate_random());
+    scene->setField(Field::generateRandom());
 
     ui->field->setScene(scene);
 }
