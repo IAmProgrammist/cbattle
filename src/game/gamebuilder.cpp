@@ -1,8 +1,10 @@
 #include <game/gamebuilder.h>
 
 #include <game/client/localconnectionstrategy.h>
+#include <game/server/tcpconnection.h>.h>
 #include <game/client/connection.h>
 #include <game/server/server.h>
+#include <QTcpSocket>
 
 LocalServerConnection* GameBuilder::establishLocalConnection(GameClient* client) {
     auto server_conn = new LocalServerConnection(server);
@@ -25,8 +27,8 @@ GameBuilder& GameBuilder::playing(GameClient* client) {
     return *this;
 }
 
-GameBuilder& GameBuilder::playing(std::string ip, int port) {
-
+GameBuilder& GameBuilder::playing(QTcpSocket* socket) {
+    server->player_one = new TCPServerConnection(this->server, socket);
 
     return *this;
 }
@@ -38,25 +40,31 @@ GameBuilder& GameBuilder::vs(GameClient* client) {
     return *this;
 }
 
-GameBuilder& GameBuilder::vs(std::string ip, int port) {
-
+GameBuilder& GameBuilder::vs(QTcpSocket* socket) {
+    server->player_two = new TCPServerConnection(this->server, socket);
 
     return *this;
 }
 
 void GameBuilder::begin() {
-    playing_client->init();
-    vs_client->init();
+    if (playing_client)
+        playing_client->init();
+    if (vs_client)
+        vs_client->init();
 }
 
 void GameBuilder::destroy() {
-    auto playing_conn = playing_client->conn;
-    playing_client->conn = nullptr;
-    delete playing_conn;
+    if (playing_client) {
+        auto playing_conn = playing_client->conn;
+        playing_client->conn = nullptr;
+        delete playing_conn;
+    }
 
-    auto vs_conn = vs_client->conn;
-    vs_client->conn = nullptr;
-    delete vs_conn;
+    if (vs_client) {
+        auto vs_conn = vs_client->conn;
+        vs_client->conn = nullptr;
+        delete vs_conn;
+    }
 
     delete server;
 }

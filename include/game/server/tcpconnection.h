@@ -15,8 +15,10 @@ public:
     QTcpSocket* conn;
     QByteArray temp;
 
-    TCPServerConnection(GameServer* game) : QObject(nullptr), ServerConnection(game)  {
+    TCPServerConnection(GameServer* game, QTcpSocket* conn) : QObject(nullptr), ServerConnection(game), conn(conn)  {
+        this->conn = conn;
         connect(conn, &QTcpSocket::readyRead, this, &TCPServerConnection::onReadyRead);
+        connect(conn, &QTcpSocket::disconnected, this, &TCPServerConnection::on_surrender);
     }
 
     virtual ~TCPServerConnection() {
@@ -74,14 +76,14 @@ public:
         std::stringstream output;
         output << "update: " << (g.game_over ? 1 : 0) << " " <<
             (g.youre_winner ? 1 : 0) << " " <<
-            (g.youre_going ? 1 : 0) << " ";
+            (g.youre_going ? 1 : 0) << " " << static_cast<int>(g.reason) << " ";
 
         for (int i = 0; i < GAME_SIZE; i++) {
             for (int j = 0; j < GAME_SIZE; j++) {
                 output << static_cast<int>(g.own_field.field[i][j]) << " ";
             }
         }
-        output << g.own_field.ships.size();
+        output << g.own_field.ships.size() << " ";
         for (auto & ship : g.own_field.ships) {
             output << (ship.is_horizontal ? 1 : 0) << " " << ship.length << " " << ship.x << " " << ship.y << " ";
         }
@@ -91,12 +93,15 @@ public:
                 output << static_cast<int>(g.enemy_field.field[i][j]) << " ";
             }
         }
-        output << g.enemy_field.ships.size();
+        output << g.enemy_field.ships.size() << " ";
         for (auto & ship : g.enemy_field.ships) {
             output << (ship.is_horizontal ? 1 : 0) << " " << ship.length << " " << ship.x << " " << ship.y << " ";
         }
 
+        output << "\n";
+
         conn->write(output.str().c_str());
+        conn->flush();
     }
 
     void send_error(ErrorCode error) {
@@ -104,6 +109,7 @@ public:
         output << "error: " << static_cast<int>(error) << "\n";
 
         conn->write(output.str().c_str());
+        conn->flush();
     }
 
     void on_step(int x, int y) {

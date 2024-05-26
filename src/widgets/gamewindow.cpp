@@ -59,7 +59,10 @@ void GameWindow::on_update(Game g) {
         }
     } else {
         if (this->game.youre_winner) {
-            this->ui->whose_turn->setText("Вы победили");
+            if (this->game.reason == WinningReason::FAIR)
+                this->ui->whose_turn->setText("Вы победили");
+            else if (this->game.reason == WinningReason::SURRENDER)
+                this->ui->whose_turn->setText("Противник сдался");
         } else {
             this->ui->whose_turn->setText("Вы проиграли");
         }

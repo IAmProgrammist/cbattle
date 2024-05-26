@@ -3,7 +3,7 @@
 #include <game/client/client.h>
 #include <game/server/localconnection.h>
 #include <game/server/server.h>
-#include <string>
+#include <QTcpServer>
 
 class GameBuilder {
 private:
@@ -15,9 +15,9 @@ public:
     GameClient* vs_client = nullptr;
     GameBuilder();
     GameBuilder& playing(GameClient* client);
-    GameBuilder& playing(std::string ip, int port);
+    GameBuilder& playing(QTcpSocket* socket);
     GameBuilder& vs(GameClient* client);
-    GameBuilder& vs(std::string ip, int port);
+    GameBuilder& vs(QTcpSocket* socket);
     void begin();
     void destroy();
 };

@@ -157,6 +157,7 @@ void GameServer::check_game_over() {
 
 void GameServer::send_update() {
     Game p1_game;
+    p1_game.reason = this->winning_reason;
     p1_game.youre_going = going_one;
     p1_game.own_field = player_one_field;
     p1_game.enemy_field = player_two_field;
@@ -170,6 +171,7 @@ void GameServer::send_update() {
     player_one->send_update(p1_game);
 
     Game p2_game;
+    p2_game.reason = this->winning_reason;
     p2_game.youre_going = !going_one;
     p2_game.own_field = player_two_field;
     p2_game.enemy_field = player_one_field;

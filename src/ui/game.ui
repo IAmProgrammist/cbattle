@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Морской бой</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../resources.qrc">
@@ -143,7 +143,7 @@
         <string notr="true">font: 700 16pt &quot;Segoe UI&quot;; color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
-        <string>Ваш ход!</string>
+        <string>Ожидаем противника...</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

@@ -9,7 +9,11 @@ TCPClientConnectionStrategy::TCPClientConnectionStrategy(GameClient* client, QTc
     connect(conn, &QTcpSocket::readyRead, this, &TCPClientConnectionStrategy::onReadyRead);
 }
 
-TCPClientConnectionStrategy::~TCPClientConnectionStrategy() {}
+TCPClientConnectionStrategy::~TCPClientConnectionStrategy() {
+    conn->flush();
+    conn->close();
+    delete conn;
+}
 
 void TCPClientConnectionStrategy::onReadyRead() {
     QTcpSocket *clientSocket = qobject_cast<QTcpSocket *>(sender());
@@ -38,6 +42,8 @@ void TCPClientConnectionStrategy::onReadyRead() {
             g.youre_winner = dat == 1;
             input >> dat;
             g.youre_going = dat == 1;
+            input >> dat;
+            g.reason = static_cast<WinningReason>(dat);
 
             for (int i = 0; i < GAME_SIZE; i++) {
                 for (int j = 0; j < GAME_SIZE; j++) {
@@ -96,18 +102,21 @@ void TCPClientConnectionStrategy::send_handshake(std::vector<Ship> ships) {
     output << "\n";
 
     conn->write(output.str().c_str());
+    conn->flush();
 }
 
 void TCPClientConnectionStrategy::send_step(int x, int y) {
     std::stringstream output;
     output << "step: " << x << " " << y << "\n";
     conn->write(output.str().c_str());
+    conn->flush();
 }
 
 void TCPClientConnectionStrategy::on_surrender() {
     std::stringstream output;
     output << "surrender: \n";
     conn->write(output.str().c_str());
+    conn->flush();
 }
 
 void TCPClientConnectionStrategy::on_update(Game g) {

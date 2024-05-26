@@ -20,12 +20,17 @@ public:
     ~InitGame();
 
 private:
+    bool game_going = false;
     Ui::InitGame *ui;
     GameWindow* game_window;
     QTcpServer* server = nullptr;
+    void setupServer();
+    void downServer();
 protected:
     void showEvent(QShowEvent* event);
     void beginBot();
+    void beginCreate();
+    void beginJoin();
     void newConnection();
 };
 
