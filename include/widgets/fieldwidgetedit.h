@@ -1,16 +1,19 @@
 #pragma once
 
-#include <widgets/fieldwidget.h>
 #include <utils/moveableobjectship.h>
+#include <widgets/fieldwidget.h>
 
 class FieldWidgetEdit : public FieldWidget {
-    Q_OBJECT
+  Q_OBJECT
 
-    MoveableObjectShip* moveable_object = nullptr;
+  MoveableObjectShip *moveable_object = nullptr;
+
 public:
-    FieldWidgetEdit(QGraphicsView *parent = nullptr, FieldStyle* style = &FieldStyle::STYLE_EDIT);
+  FieldWidgetEdit(QGraphicsView *parent = nullptr,
+                  FieldStyle *style = &FieldStyle::STYLE_EDIT);
+
 protected:
-    void mouseMoveEvent( QGraphicsSceneMouseEvent *event );
-    void mousePressEvent( QGraphicsSceneMouseEvent *event );
-    void mouseReleaseEvent( QGraphicsSceneMouseEvent *event );
+  void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+  void mousePressEvent(QGraphicsSceneMouseEvent *event);
+  void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 };

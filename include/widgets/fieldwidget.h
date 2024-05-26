@@ -1,32 +1,33 @@
 #pragma once
 
+#include <QColor>
+#include <QGraphicsItem>
 #include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
 #include <QGraphicsView>
 #include <QPen>
-#include <QColor>
-#include <QGraphicsSceneMouseEvent>
-#include <QGraphicsItem>
 
-#include <models/ship.h>
 #include <models/field.h>
+#include <models/ship.h>
 #include <widgets/fieldstyle.h>
 
 class FieldWidget : public QGraphicsScene {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    Field field;
+  Field field;
 
-    FieldWidget(QGraphicsView *parent = nullptr, FieldStyle* style = &FieldStyle::STYLE_PLAY_SELF) : QGraphicsScene(parent), style(style) {}
+  FieldWidget(QGraphicsView *parent = nullptr,
+              FieldStyle *style = &FieldStyle::STYLE_PLAY_SELF)
+      : QGraphicsScene(parent), style(style) {}
 
-    void setField(Field field);
-    Field getField();
+  void setField(Field field);
+  Field getField();
 
-    void redraw();
+  void redraw();
 
 protected:
-    FieldStyle* style;
-    std::pair<QPointF, QPointF> getShipScenePos(Ship& ship);
-    int getCollidedShipIndex(QPointF pos);
-    QPoint getCellCoordinate(QPointF scene_pos);
+  FieldStyle *style;
+  std::pair<QPointF, QPointF> getShipScenePos(Ship &ship);
+  int getCollidedShipIndex(QPointF pos);
+  QPoint getCellCoordinate(QPointF scene_pos);
 };
-

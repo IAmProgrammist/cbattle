@@ -7,14 +7,14 @@
 
 class ClientConnection {
 public:
-    ClientConnectionStrategy* strategy;
+  ClientConnectionStrategy *strategy;
 
-    ClientConnection(ClientConnectionStrategy* strategy);
-    ~ClientConnection();
+  ClientConnection(ClientConnectionStrategy *strategy);
+  ~ClientConnection();
 
-    void sendHandshake(std::vector<Ship> ships);
-    void sendStep(int x, int y);
-    void onUpdate(Game g);
-    void onError(ErrorCode error);
-    void onSurrender();
+  void sendHandshake(std::vector<Ship> ships);
+  void sendStep(int x, int y);
+  void onUpdate(Game g);
+  void onError(ErrorCode error);
+  void onSurrender();
 };

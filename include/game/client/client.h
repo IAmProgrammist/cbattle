@@ -6,12 +6,11 @@
 
 class GameClient {
 public:
-    ClientConnection *conn;
-    // This method should be overriden on use
-    virtual void onUpdate(Game g) = 0;
-    virtual void onError(ErrorCode error) = 0;
-    virtual void init() = 0;
-    virtual void onStep(int x, int y);
-    virtual void onHandshake(std::vector<Ship> ships);
-    virtual void onSurrender();
+  ClientConnection *conn;
+  virtual void onUpdate(Game g) = 0;
+  virtual void onError(ErrorCode error) = 0;
+  virtual void init() = 0;
+  virtual void onStep(int x, int y);
+  virtual void onHandshake(std::vector<Ship> ships);
+  virtual void onSurrender();
 };

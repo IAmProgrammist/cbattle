@@ -1,23 +1,22 @@
 #include <QApplication>
 
-#include <widgets/initgame.h>
 #include <QTcpSocket>
+#include <widgets/initgame.h>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    
-    FieldStyle::initStyles();
-    InitGame init_game;
-    init_game.show();
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
 
-    /*MyTcpServer server;
-    if (!server.listen(QHostAddress::Any, 1234)) {
-        std::cout << "Failed to start server" << std::endl;
-        return -1;
-    }
+  FieldStyle::initStyles();
+  InitGame init_game;
+  init_game.show();
 
-    std::cout << "Server started on port 1234" << std::endl;*/
+  /*MyTcpServer server;
+  if (!server.listen(QHostAddress::Any, 1234)) {
+      std::cout << "Failed to start server" << std::endl;
+      return -1;
+  }
 
-    return a.exec();
+  std::cout << "Server started on port 1234" << std::endl;*/
+
+  return a.exec();
 }

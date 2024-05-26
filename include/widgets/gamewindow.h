@@ -10,26 +10,27 @@ namespace Ui {
 class GameWindow;
 }
 
-class GameWindow : public QDialog, public GameClient
-{
-    Q_OBJECT
+class GameWindow : public QDialog, public GameClient {
+  Q_OBJECT
 
 public:
-    bool handshake_ok = true;
+  bool handshake_ok = true;
 
-    explicit GameWindow(std::vector<Ship> ships, QWidget *parent = nullptr);
-    ~GameWindow();
-    void onUpdate(Game g);
-    void onError(ErrorCode error);
-    void init();
+  explicit GameWindow(std::vector<Ship> ships, QWidget *parent = nullptr);
+  ~GameWindow();
+  void onUpdate(Game g);
+  void onError(ErrorCode error);
+  void init();
+
 private:
-    Ui::GameWindow *ui;
-    FieldWidgetPlayEnemy* enemy_field = nullptr;
-    FieldWidget* own_field = nullptr;
+  Ui::GameWindow *ui;
+  FieldWidgetPlayEnemy *enemy_field = nullptr;
+  FieldWidget *own_field = nullptr;
+
 protected:
-    Game game;
-    std::vector<Ship> ships;
-    void showEvent(QShowEvent* event);
-    void closeEvent(QCloseEvent* event);
-    void surrender();
+  Game game;
+  std::vector<Ship> ships;
+  void showEvent(QShowEvent *event);
+  void closeEvent(QCloseEvent *event);
+  void surrender();
 };

@@ -1,16 +1,16 @@
 #pragma once
 
-#include <QGraphicsScene>
 #include <QGraphicsItem>
+#include <QGraphicsScene>
 
-#include <utils/moveableobjectadapter.hpp>
 #include <models/ship.h>
+#include <utils/moveableobjectadapter.hpp>
 
 class MoveableObjectShip : public MoveableObjectAdapter<Ship> {
 protected:
-    QGraphicsItem* construct_object();
+  QGraphicsItem *construct_object();
 
 public:
-    MoveableObjectShip(QGraphicsView* parent, Ship object, QPointF offset, FieldStyle* style);
+  MoveableObjectShip(QGraphicsView *parent, Ship object, QPointF offset,
+                     FieldStyle *style);
 };
-

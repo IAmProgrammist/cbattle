@@ -10,22 +10,16 @@
 #define THREE_SHIP 2
 #define FOUR_SHIP 1
 
-enum FieldElement {
-    NOT_CHECKED = 0,
-    EMPTY_CHECKED = 1,
-    EXPOLSION_CHECKED = 2
-};
+enum FieldElement { NOT_CHECKED = 0, EMPTY_CHECKED = 1, EXPOLSION_CHECKED = 2 };
 
 class Field {
 public:
-    FieldElement field[GAME_SIZE][GAME_SIZE] = {};
-    std::vector<Ship> ships;
+  FieldElement field[GAME_SIZE][GAME_SIZE] = {};
+  std::vector<Ship> ships;
 
-    static bool areInBounds(int pos) {
-        return pos >= 0 && pos < GAME_SIZE;
-    }
+  static bool areInBounds(int pos) { return pos >= 0 && pos < GAME_SIZE; }
 
 public:
-    static Field generateRandom();
-    bool validateShips();
+  static Field generateRandom();
+  bool validateShips();
 };

@@ -9,13 +9,13 @@ class ServerConnection;
 
 class LocalClientConnectionStrategy : public ClientConnectionStrategy {
 public:
-    ServerConnection* conn;
+  ServerConnection *conn;
 
-    LocalClientConnectionStrategy(GameClient* client, ServerConnection* conn);
-    ~LocalClientConnectionStrategy();
-    void sendHandshake(std::vector<Ship> ships);
-    void sendStep(int x, int y);
-    void onUpdate(Game g);
-    void onError(ErrorCode error);
-    void onSurrender();
+  LocalClientConnectionStrategy(GameClient *client, ServerConnection *conn);
+  ~LocalClientConnectionStrategy();
+  void sendHandshake(std::vector<Ship> ships);
+  void sendStep(int x, int y);
+  void onUpdate(Game g);
+  void onError(ErrorCode error);
+  void onSurrender();
 };
