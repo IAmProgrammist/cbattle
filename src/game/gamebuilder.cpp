@@ -4,7 +4,7 @@
 #include <game/client/connection.h>
 #include <game/client/localconnectionstrategy.h>
 #include <game/server/server.h>
-#include <game/server/tcpconnection.h>.h>
+#include <game/server/tcpconnection.h>
 
 LocalServerConnection *
 GameBuilder::establishLocalConnection(GameClient *client) {
