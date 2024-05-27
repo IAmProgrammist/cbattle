@@ -7,6 +7,9 @@
 class GameClient {
 public:
   ClientConnection *conn;
+
+  virtual ~GameClient();
+
   virtual void onUpdate(Game g) = 0;
   virtual void onError(ErrorCode error) = 0;
   virtual void init() = 0;

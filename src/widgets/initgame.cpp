@@ -49,7 +49,6 @@ void InitGame::beginJoin() {
     game_window->exec();
     this->show();
 
-    delete game_window->conn;
     delete game_window;
 
     game_going = false;
@@ -65,9 +64,7 @@ void InitGame::newConnection() {
 
   game_window = new GameWindow(
       reinterpret_cast<FieldWidgetEdit *>(ui->field->scene())->field.ships);
-  auto gamebuilder = new GameBuilder();
-  auto k = gamebuilder->playing(game_window).vs(socket);
-  k.begin();
+  auto game_server = GameBuilder().playing(game_window)->vs(socket)->begin();
 
   if (game_window->handshake_ok) {
     this->hide();
@@ -76,9 +73,8 @@ void InitGame::newConnection() {
   }
   this->show();
 
-  gamebuilder->destroy();
-  delete gamebuilder;
   delete game_window;
+  delete game_server;
   game_going = false;
 }
 
@@ -138,10 +134,8 @@ void InitGame::beginBot() {
     return;
   game_window = new GameWindow(
       reinterpret_cast<FieldWidgetEdit *>(ui->field->scene())->field.ships);
-  auto gamebuilder = new GameBuilder();
   auto bot_view = new BotGameClient();
-  auto k = gamebuilder->playing(game_window).vs(bot_view);
-  k.begin();
+  auto game_server = GameBuilder().playing(game_window)->vs(bot_view)->begin();
 
   if (game_window->handshake_ok) {
     this->hide();
@@ -150,9 +144,8 @@ void InitGame::beginBot() {
   }
   this->show();
 
-  gamebuilder->destroy();
-  delete gamebuilder;
   delete game_window;
   delete bot_view;
+  delete game_server;
   game_going = false;
 }

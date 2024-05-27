@@ -17,14 +17,11 @@ public:
   Field field;
 
   FieldWidget(QGraphicsView *parent = nullptr,
-              FieldStyle *style = &FieldStyle::STYLE_PLAY_SELF)
-      : QGraphicsScene(parent), style(style) {}
+              FieldStyle *style = &FieldStyle::STYLE_PLAY_SELF);
 
   void setField(Field field);
   Field getField();
-
   void redraw();
-
 protected:
   FieldStyle *style;
   std::pair<QPointF, QPointF> getShipScenePos(Ship &ship);

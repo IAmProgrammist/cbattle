@@ -9,7 +9,8 @@ Suspicion::Suspicion(int x, int y, Direction where)
 
 BotGameClient::BotGameClient() : GameClient() {}
 
-BotGameClient::~BotGameClient() {}
+BotGameClient::~BotGameClient() {
+}
 
 void BotGameClient::onUpdate(Game g) {
   this->game = g;

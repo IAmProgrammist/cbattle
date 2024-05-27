@@ -3,6 +3,9 @@
 #include <QMouseEvent>
 #include <QPixmap>
 
+FieldWidget::FieldWidget(QGraphicsView *parent, FieldStyle *style)
+      : QGraphicsScene(parent), style(style) {}
+
 void FieldWidget::setField(Field field) {
   this->field = field;
 

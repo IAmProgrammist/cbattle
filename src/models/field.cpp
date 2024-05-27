@@ -125,3 +125,5 @@ bool Field::validateShips() {
 
   return true;
 }
+
+bool Field::areInBounds(int pos) { return pos >= 0 && pos < GAME_SIZE; }

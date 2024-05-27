@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/game/abstractgamebuilder.cpp \
     src/game/client/botclient.cpp \
     src/game/client/client.cpp \
     src/game/client/connection.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     src/main.cpp
 
 HEADERS += \
+    include/game/abstractgamebuilder.h \
     include/game/client/botclient.h \
     include/game/client/client.h \
     include/game/client/connection.h \
@@ -71,3 +73,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    model.qmodel

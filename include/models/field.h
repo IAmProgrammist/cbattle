@@ -17,9 +17,7 @@ public:
   FieldElement field[GAME_SIZE][GAME_SIZE] = {};
   std::vector<Ship> ships;
 
-  static bool areInBounds(int pos) { return pos >= 0 && pos < GAME_SIZE; }
-
-public:
+  static bool areInBounds(int pos);
   static Field generateRandom();
   bool validateShips();
 };

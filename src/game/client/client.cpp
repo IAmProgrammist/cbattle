@@ -1,6 +1,10 @@
 #include <game/client/client.h>
 #include <game/client/connection.h>
 
+GameClient::~GameClient() {
+    delete this->conn;
+}
+
 void GameClient::onStep(int x, int y) { return conn->sendStep(x, y); }
 
 void GameClient::onHandshake(std::vector<Ship> ships) {
