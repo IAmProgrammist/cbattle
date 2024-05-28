@@ -4,8 +4,9 @@
 #include <models/game.h>
 
 class ServerConnection {
-public:
+protected:
   GameServer *game;
+public:
   ServerConnection(GameServer *game);
   virtual ~ServerConnection();
 

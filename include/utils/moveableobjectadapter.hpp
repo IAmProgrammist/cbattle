@@ -13,11 +13,6 @@ protected:
   QPointF offset;
   FieldStyle *style;
 
-  virtual ~MoveableObjectAdapter() {
-    this->parent->scene()->removeItem(graph_object);
-    delete graph_object;
-  }
-
   virtual QGraphicsItem *construct_object() = 0;
 
 public:
@@ -29,6 +24,11 @@ public:
   MoveableObjectAdapter(QGraphicsView *parent, T object, QPointF offset,
                         FieldStyle *style)
       : parent(parent), object(object), offset(offset), style(style) {}
+
+  virtual ~MoveableObjectAdapter() {
+    this->parent->scene()->removeItem(graph_object);
+    delete graph_object;
+  }
 
   void init() {
     this->graph_object = construct_object();

@@ -7,9 +7,9 @@
 class GameClient;
 
 class ClientConnectionStrategy {
-public:
+protected:
   GameClient *client;
-
+public:
   ClientConnectionStrategy(GameClient *client);
   virtual ~ClientConnectionStrategy();
 

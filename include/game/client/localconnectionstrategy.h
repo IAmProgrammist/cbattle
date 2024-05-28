@@ -8,9 +8,8 @@
 class ServerConnection;
 
 class LocalClientConnectionStrategy : public ClientConnectionStrategy {
-public:
   ServerConnection *conn;
-
+public:
   LocalClientConnectionStrategy(GameClient *client, ServerConnection *conn);
   ~LocalClientConnectionStrategy();
   void sendHandshake(std::vector<Ship> ships);

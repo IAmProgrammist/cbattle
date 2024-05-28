@@ -15,7 +15,6 @@ class FieldWidget : public QGraphicsScene {
   Q_OBJECT
 public:
   Field field;
-
   FieldWidget(QGraphicsView *parent = nullptr,
               FieldStyle *style = &FieldStyle::STYLE_PLAY_SELF);
 

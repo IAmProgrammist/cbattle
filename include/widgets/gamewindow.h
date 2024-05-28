@@ -13,6 +13,9 @@ class GameWindow;
 class GameWindow : public QDialog, public GameClient {
   Q_OBJECT
 
+  Ui::GameWindow *ui;
+  FieldWidgetPlayEnemy *enemy_field = nullptr;
+  FieldWidget *own_field = nullptr;
 public:
   bool handshake_ok = true;
 
@@ -21,11 +24,6 @@ public:
   void onUpdate(Game g);
   void onError(ErrorCode error);
   void init();
-
-private:
-  Ui::GameWindow *ui;
-  FieldWidgetPlayEnemy *enemy_field = nullptr;
-  FieldWidget *own_field = nullptr;
 
 protected:
   Game game;

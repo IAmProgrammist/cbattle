@@ -9,10 +9,11 @@
 class TCPClientConnectionStrategy : public QObject,
                                     public ClientConnectionStrategy {
   Q_OBJECT
-public:
+
   QTcpSocket *conn;
   QByteArray temp;
-
+  void onReadyRead();
+public:
   TCPClientConnectionStrategy(GameClient *client, QTcpSocket *conn,
                               QObject *parent);
   ~TCPClientConnectionStrategy();
@@ -21,7 +22,4 @@ public:
   void onUpdate(Game g);
   void onError(ErrorCode error);
   void onSurrender();
-
-protected:
-  void onReadyRead();
 };

@@ -6,13 +6,13 @@
 #include <game/server/localconnection.h>
 
 class AbstractGameBuilder {
-public:
+protected:
     GameServer *server = nullptr;
     GameClient *playing_client = nullptr;
     GameClient *vs_client = nullptr;
     bool playing_setup = false;
     bool vs_setup = false;
-
+public:
     AbstractGameBuilder();
     virtual ~AbstractGameBuilder();
     virtual AbstractGameBuilder* playing(GameClient *client) = 0;

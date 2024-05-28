@@ -6,9 +6,8 @@
 #include <models/game.h>
 
 class ClientConnection {
-public:
   ClientConnectionStrategy *strategy;
-
+public:
   ClientConnection(ClientConnectionStrategy *strategy);
   ~ClientConnection();
 

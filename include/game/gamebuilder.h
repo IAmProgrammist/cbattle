@@ -8,7 +8,6 @@
 #include <game/abstractgamebuilder.h>
 
 class GameBuilder : public AbstractGameBuilder {
-private:
   LocalServerConnection *establishLocalConnection(GameClient *client);
 
 public:
